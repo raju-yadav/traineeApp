@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 7, 2010 6:52:14 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+<class name="model.TrainingEmployeeDet" table="TrainingEmployeeDet">
+<id name="id" type="long">
+<column name="ID" length="10"/>
+<generator class="increment"></generator>
+</id>
+<many-to-one name="employee" class="model.Employee" column="Employee_Id"  not-null="true" />
+<many-to-one name="training" class="model.Training" column="Training_Id"  not-null="true" />
+<property name="flag" type="int">
+<column name="Flag" default="0"/>
+</property>
+<property name="EndDate" type="date">
+<column name="EndDate" />
+</property>
+</class>
+<query name="userid">from TrainingEmployeeDet where Employee_Id = ?</query>
+</hibernate-mapping>

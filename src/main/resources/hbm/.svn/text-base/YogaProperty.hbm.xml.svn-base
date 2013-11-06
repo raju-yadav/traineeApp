@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 21, 2010 3:45:06 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="model.YogaProperty" table="YOGA_PROPERTY" >
+        <id name="propertyId" type="long">
+            <column name="PROPERTY_ID" precision="11" scale="0" />
+            <generator class="increment" />
+        </id>
+        <property name="propertyName" type="string">
+            <column name="PROPERTY_NAME" length="50" />
+        </property>
+        <property name="propertyOwner" type="string">
+            <column name="PROPERTY_OWNER" length="50" />
+        </property>
+        <property name="numberOfBuilding" type="big_decimal">
+            <column name="NUMBER_OF_BUILDING" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

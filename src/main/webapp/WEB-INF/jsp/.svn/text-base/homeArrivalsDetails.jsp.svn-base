@@ -1,0 +1,48 @@
+<jsp:include page="header.jsp">
+	<jsp:param value="Accomodation Details" name="pageTitle" />
+</jsp:include>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="spring"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<spring:form modelAttribute="commonBean" action="">
+
+	<table width="50%" class="menu_box" align="center">
+
+		<tr>
+			<td align="left"><spring:label path="arrName">Arrivals Name:</spring:label></td>
+			<td align="left">${commonBean.arrName}</td>
+			<td align="left"><spring:label path="headName">Group Head Name:</spring:label></td>
+			<td align="left">${commonBean.headName}</td>
+		</tr>
+
+		<tr>
+			<td align="left"><spring:label path="dateOfArrivals">Date Of Arrivals:</spring:label></td>
+			<td align="left"><fmt:formatDate
+				value="${commonBean.dateOfArrivals}" /></td>
+			<td align="left"><spring:label path="dateOfDeparture">Departure Date:</spring:label></td>
+			<td align="left"><spring:input path="dateOfDeparture" /></td>
+
+		</tr>
+
+
+		<tr>
+			<td align="left"><spring:label path="buildingName">Building:</spring:label></td>
+			<td align="left">${commonBean.buildingName}</td>
+			<td align="left"><spring:label path="roomNumber">Room:</spring:label></td>
+			<td align="left">${commonBean.roomNumber}</td>
+		</tr>
+		<tr>
+			<td align="left"><spring:label path="bedName">Bed:</spring:label></td>
+			<td align="left">${commonBean.bedName}</td>
+		</tr>
+	</table>
+	<table align="center" width="50%" class="menu_box">
+		<tr>
+			<td align="right"><input type="button" value="Back"
+				onclick="window.history.back()"/></td>
+			<td align="left"><input type="submit" value="Update"
+				name="Update" /></td>
+		</tr>
+	</table>
+</spring:form>
+<%@include file="footer.jsp"%>

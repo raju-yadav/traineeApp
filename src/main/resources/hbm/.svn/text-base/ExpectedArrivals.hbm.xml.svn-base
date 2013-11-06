@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 7, 2010 6:52:14 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="model.ExpectedArrivals" table="EXPECTED_ARRIVALS" >
+        <id name="arrivalId" type="long">
+            <column name="ARRIVAL_ID" precision="11" scale="0" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="arrivalsGroup" class="model.ArrivalsGroup" fetch="select">
+            <column name="GROUP_ID" precision="11" scale="0" />
+        </many-to-one>
+        <many-to-one name="arrivalsContact" class="model.ArrivalsContact" fetch="select">
+            <column name="CONTACT_ID" precision="11" scale="0" />
+        </many-to-one>
+        <property name="arrName" type="string">
+            <column name="ARR_NAME" length="50" />
+        </property>
+        <property name="arrAge" type="java.lang.Long">
+            <column name="ARR_AGE" precision="11" scale="0" />
+        </property>
+        <property name="arrSex" type="string">
+            <column name="ARR_SEX" length="11" />
+        </property>
+        <property name="dateOfArrivals" type="date">
+            <column name="DATE_OF_ARRIVALS" />
+        </property>
+        <property name="dateOfDeparture" type="date">
+            <column name="DATE_OF_DEPARTURE"  />
+        </property>
+         <property name="dateOfBirth" type="date">
+            <column name="DATE_OF_BIRTH"  />
+        </property>
+        <property name="arrSpritualName" type="string">
+            <column name="ARR_SPRITUAL_NAME" length="50" />
+        </property>
+        <property name="arrKarmaYoga" type="string">
+            <column name="ARR_KARMA_YOGA" length="50" />
+        </property>
+        
+        <property name="roomStatus"  column="ROOM_STATUS"/>
+         <property name="vacantStatus" column="VACANT_STATUS" type="string" length="5"/>
+        <property name="purposeOfVisit"  column="PUR_OF_VISIT" type="string" length="250"/>
+        
+        <set name="arrivalsAddresses" inverse="true" lazy="true" table="ARRIVALS_ADDRESS" fetch="select">
+            <key>
+                <column name="ARRIVAL_ID" precision="11" scale="0" />
+            </key>
+            <one-to-many class="model.ArrivalsAddress" />
+        </set>
+        <set name="yogaAccomodations" inverse="true" lazy="true" table="YOGA_ACCOMODATION" fetch="select">
+            <key>
+                <column name="ARRIVAL_ID" precision="11" scale="0" />
+            </key>
+            <one-to-many class="model.YogaAccomodation" />
+        </set>
+        <set name="yogaBuildingRooms" inverse="true" lazy="true" table="YOGA_BUILDING_ROOM" fetch="select">
+            <key>
+                <column name="ARRIVAL_ID" scale="0" />
+            </key>
+            <one-to-many class="model.YogaBuildingRoom" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 7, 2010 6:52:14 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+	<class name="model.UserType" table="UserType">
+	<id name="id" type="long">
+			<column name="TypeId" length="10" />
+			<generator class="assigned"></generator>
+		</id>
+
+		<property name="typeName" type="string">
+			<column name="TypeName" length="50" />
+		</property>
+	
+	</class>
+	<query name="role">from UserType</query>
+</hibernate-mapping>

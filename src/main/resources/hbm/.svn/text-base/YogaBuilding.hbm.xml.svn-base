@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 21, 2010 3:45:06 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="model.YogaBuilding" table="YOGA_BUILDING" >
+        <id name="buildingId" type="long">
+            <column name="BUILDING_ID" precision="11" scale="0" />
+            <generator class="increment" />
+        </id>
+        <property name="buildingName" type="string">
+            <column name="BUILDING_NAME" length="50" />
+        </property>
+        <property name="numberOfRoom" type="java.lang.Long">
+            <column name="NUMBER_OF_ROOM" precision="11" scale="0" />
+        </property>
+        <set name="yogaBuildingRooms" inverse="true" lazy="true" table="YOGA_BUILDING_ROOM" fetch="select">
+            <key>
+                <column name="BUILDING_ID" precision="11" scale="0" />
+            </key>
+            <one-to-many class="model.YogaBuildingRoom" />
+        </set>
+    </class>
+</hibernate-mapping>

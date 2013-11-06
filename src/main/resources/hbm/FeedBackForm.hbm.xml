@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 7, 2010 6:52:14 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="model.FeedBackForm" table="FeedBackForm" >
+        <id name="feedbackId" type="long">
+            <column name="feedbackid" precision="11" scale="0" />
+            <generator class="increment" />
+        </id>
+       
+        <property name="feedbackTitle" type="string">
+            <column name="feedbackTitle" length="50" />
+        </property>
+         
+        <property name="feedbackDate" type="string">
+            <column name="feedbackDate"  />
+        </property> 
+        <property name="faculty" type="string">
+            <column name="faculty" length="50"  />
+        </property>
+        <property name="trObjClearRadio" type="integer">
+            <column name="trObjClearRadio" length="2"  />
+        </property>
+         <property name="trObjAchievedRadio" type="integer">
+            <column name="trObjAchievedRadio" length="2"  />
+        </property>
+         <property name="trObjContentRadio" type="integer">
+            <column name="trObjContentRadio" length="2"  />
+        </property>
+         <property name="trObjRateRadio" type="integer">
+            <column name="trObjRateRadio" length="2"  />
+        </property>
+         <property name="trObjReadingRadio" type="integer">
+            <column name="trObjReadingRadio" length="2"  />
+        </property>
+         <property name="trObjTopiceRadio" type="integer">
+            <column name="trObjTopiceRadio" length="2"  />
+        </property>
+         <property name="trObjJobRadio" type="integer">
+            <column name="trObjJobRadio" length="2"  />
+        </property>
+         <property name="trObjPresentedRadio" type="integer">
+            <column name="trObjPresentedRadio" length="2"  />
+        </property>
+         <property name="trObjInterestRadio" type="integer">
+            <column name="trObjInterestRadio" length="2"  />
+        </property>
+         <property name="trObjLevelRadio" type="integer">
+            <column name="trObjLevelRadio" length="2"  />
+        </property>
+         <property name="trObjTrainerRadio" type="integer">
+            <column name="trObjTrainerRadio" length="2"  />
+        </property>
+         <property name="trObjTrainrRadio" type="integer">
+            <column name="trObjTrainrRadio" length="2"  />
+        </property>
+         <property name="trObjUrsantRadio" type="integer">
+            <column name="trObjUrsantRadio" length="2"  />
+        </property>
+         <property name="trObjSessionRadio" type="integer">
+            <column name="trObjSessionRadio" length="2"  />
+        </property>
+         <property name="trObjAnsRadio" type="integer">
+            <column name="trObjAnsRadio" length="2"  />
+        </property>
+       <property name="suggestion" type="string">
+            <column name="suggestion" length="4000"  />
+        </property>
+        <property name="perspective" type="string">
+            <column name="perspective" length="4000"  />
+        </property>
+       
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 7, 2010 6:52:14 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+	<class name="model.Training" table="Training">
+
+		<id name="trainingId" type="long">
+			<column name="TrainingId" length="10" />
+			<generator class="increment"></generator>
+		</id>
+
+		<property name="trainingName" type="string">
+			<column name="TrainingName" length="150" />
+		</property>
+
+		<property name="trainingtype" type="string">
+			<column name="TrainingType" length="50" />
+		</property>
+		
+		<property name="fromDate" type="date">
+			<column name="FromDate" length="50" />
+		</property>
+		<property name="toDate" type="date">
+			<column name="ToDate" length="50" />
+		</property>
+		 <many-to-one name="department" class="model.Department" fetch="select">
+            <column name="Department_id" not-null="false" /></many-to-one>
+		
+		<many-to-one name="group" class="model.Group" fetch="select" >
+            <column name="Group_id" not-null="false" /></many-to-one>
+        
+            
+		<set name="feedBackResults" table="FeedBackFormResults" 
+				inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Training_id" not-null="true" />
+            </key>
+            <one-to-many class="model.FeedBackResults" />
+        </set>
+        
+         <set name="trempDet" table="TrainingEmployeeDet" 
+				inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Employee_Id" not-null="true" />
+            </key>
+            <one-to-many class="model.TrainingEmployeeDet" />
+        </set>
+        
+        <many-to-one name="trainerId" class="model.Employee" fetch="select">
+            <column name="Trainer_id" not-null="false" /></many-to-one>
+	</class>
+	<query name="tr">from Training</query>
+	<query name="name1">from Training where TrainingName = ?</query>
+	<query name="trid">from Training where TrainingId = ?</query>
+</hibernate-mapping>

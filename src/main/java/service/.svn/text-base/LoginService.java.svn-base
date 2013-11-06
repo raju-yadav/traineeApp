@@ -1,0 +1,10 @@
+package service;
+
+import model.Login;
+
+
+public interface LoginService {
+
+	public YogaLogin getLoggedInUser(String name);
+	public YogaLogin userCheck(YogaLogin yogaLogin);
+}

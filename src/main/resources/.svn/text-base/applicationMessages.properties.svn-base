@@ -1,0 +1,13 @@
+typeSelection.required=Required
+userName=Required
+password=Required
+arrName.required=Required
+arrSpritualName.required=Required
+arrKarmaYoga.required=Required
+arrSex.required=Required
+dateOfArrivals.required=Required
+dateOfBirth.required=Required
+emailId.required=Required
+coutry.required=Required
+state.required=Required
+place.required=Required

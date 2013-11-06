@@ -1,0 +1,108 @@
+a.navwhite:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+a.navwhite:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+a.navwhite:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+a.navblack:link { text-decoration: none; color: #000000; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+a.navblack:visited { text-decoration: none; color: #000000; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+a.navblack:hover { text-decoration: underline; color: #000000; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+    
+h1 { font-family: Arial, sans-serif; font-size: 30px; color: #63B8FF;}
+h2 { font-family: Arial, sans-serif; font-size: 18px; color: #63B8FF;}
+
+body,p,b,i,em,dt,dd,dl,sl,caption,th,td,tr,u,blink,select,option,form,div,li { font-family: Arial, sans-serif; font-size: 12px; }
+
+/* IE Specific */
+body, textarea {
+  scrollbar-3dlight-color: #808080;
+  scrollbar-highlight-color: #808080;
+  scrollbar-face-color: #F4A460;
+  scrollbar-shadow-color: #808080;
+  scrollbar-darkshadow-color: #805B32;
+  scrollbar-arrow-color: #000000;
+  scrollbar-track-color: #F8EFE2;
+}
+/* END IE Specific */
+
+
+/* Application Styles */
+.ui-widget-content {
+    background: white;
+}
+
+.ui-tabs-nav {
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+label {
+    font-weight: bold;
+    color: #63B8FF;
+}
+
+.errorMessage {
+    color: red;
+}
+
+.ui-dialog h3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+}
+
+.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom: 1px solid black;
+}
+
+.dataTable th {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 5px;
+}
+
+.dataTable td {
+    padding: 2px;
+}
+
+.dataTable .rightCol {
+    border-left: 1px solid black;
+    padding-left: 4px;
+}
+
+.even {
+    background-color: #EEEEEE;
+}
+
+.titledPanel {
+    border: 1px solid navy;
+}
+
+.titledPanel .header {
+    font-size: 10pt;
+    padding: 3px 0px 3px 5px;
+    margin: 0px 0px 25px 0px;
+    background-color: #6694E3;
+    color: white;
+}
+.menu_box {
+    background: url( /images/menu-box-bg.jpg ) left top repeat-x;
+    height: 30px;
+    border-bottom: 1px solid #63B8FF;
+    border-top: 1px solid #63B8FF;
+    border-left: 2px double #63B8FF;
+    border-right: 2px double #63B8FF;
+    font-weight: bold;
+}
+.body_title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    line-height: 20px;
+    font-weight: bold;
+    font-variant: normal;
+    text-transform: none;
+    color: #63B8FF;
+    text-decoration: none;
+    background-color: inherit;
+}

@@ -1,0 +1,50 @@
+package dao.impl;
+
+import java.util.List;
+
+import model.Login;
+
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.dao.DataAccessException;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
+
+import dao.LoginDao;
+
+@Repository
+public class LoginDaoImpl extends HibernateDaoSupport implements LoginDao  {
+	@SuppressWarnings("unchecked")
+	public YogaLogin loadUserByUsername(String username) {
+		try {
+			DetachedCriteria criteria = DetachedCriteria
+			        .forClass(YogaLogin.class);
+			criteria.add(Restrictions.eq("USER_NAME", username));
+			List<YogaLogin> userList = getHibernateTemplate()
+			        .findByCriteria(criteria);
+			if (userList.size() > 0) {
+				YogaLogin login = userList.get(0);
+				
+				return login;
+			}
+		} catch (DataAccessException e) {
+			e.getMessage();
+		}
+		return null;
+
+	}
+	@SuppressWarnings("unchecked")
+	public YogaLogin userCheck(YogaLogin yogaLogin) {
+		String loginName = yogaLogin.getUserName();
+		String loginPassword = yogaLogin.getPassword();
+		Object[] params = { loginName, loginPassword };
+		List<YogaLogin> empLogins = getHibernateTemplate().findByNamedQuery(
+		        "login.query.string", params);
+
+		if (empLogins.size() > 0) {
+			return empLogins.get(0);
+		}
+
+		return null;
+	}
+}

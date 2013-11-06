@@ -1,0 +1,13 @@
+package dao;
+
+import model.Login;
+
+
+
+public interface LoginDao {
+
+	public YogaLogin loadUserByUsername(String username);
+	public YogaLogin userCheck(YogaLogin yogaLogin);
+
+	
+}

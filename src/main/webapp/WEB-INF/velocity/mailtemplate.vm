@@ -1,0 +1,6 @@
+<h1>Thank you for registering ${name}</h1>
+<p>Dear ${last} ${last}<br>
+Thank you for registering with us. We received your registration email on <br>
+${last}. Could you please follow the confirmation link and <br>
+confirm your registration!
+</p>

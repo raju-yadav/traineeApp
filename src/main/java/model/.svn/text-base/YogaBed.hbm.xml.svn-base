@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 6, 2010 5:36:49 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="model.YogaBed" table="YOGA_BED" schema="SYSTEM">
+        <id name="bedId" type="long">
+            <column name="BED_ID" precision="11" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="bedName" type="string">
+            <column name="BED_NAME" length="50" />
+        </property>
+        <set name="yogaBuildingRooms" table="YOGA_BUILDING_ROOM" >
+            <key>
+                <column name="BED_ID" precision="11" scale="0" />
+            </key>
+            <one-to-many class="model.YogaBuildingRoom" />
+        </set>
+    </class>
+</hibernate-mapping>

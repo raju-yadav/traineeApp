@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 7, 2010 6:52:14 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+	<class name="model.Employee" table="Employee">
+
+		<id name="employeeId" type="string">
+			<column name="employeeId" length="10" />
+			<generator class="assigned"/>
+		</id>
+
+		<property name="employeeName" type="string">
+			<column name="employeeName" length="50" />
+		</property>
+
+		<property name="designationId" type="string">
+			<column name="designationId" precision="11" scale="0" />
+		</property>
+
+		<property name="emailid" type="string">
+			<column name="emailid" length="50" />
+		</property>
+
+		<property name="reportmanager" type="string">
+			<column name="reportmanager" length="50" />
+		</property>
+		<many-to-one name="type" class="model.UserType" column="Type_Id"  not-null="true" />
+		<many-to-one name="dept" class="model.Department" column="Dept_Id" not-null="true" />
+		<many-to-one name="group" class="model.Group" column="Group_Id" not-null="false" />
+		
+		<set name="training" table="Training" 
+				inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Trainer_id" not-null="false" />
+            </key>
+            <one-to-many class="model.Training" />
+        </set>
+        <set name="trempDet" table="TrainingEmployeeDet" 
+				inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Employee_Id" not-null="true" />
+            </key>
+            <one-to-many class="model.TrainingEmployeeDet" />
+        </set>
+        
+	<one-to-one name="login" class="model.Login" property-ref="userName" cascade="all"></one-to-one>
+	</class>
+	<query name="emp">from Employee</query>
+	<query name="emailid">from Employee where emailid = ?</query>
+	<query name="empid">from Employee where employeeId = ?</query>
+</hibernate-mapping>
+        

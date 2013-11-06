@@ -1,0 +1,112 @@
+package service.impl;
+
+import java.util.Date;
+import java.util.List;
+
+import model.CommonBean;
+import model.ExpectedArrivals;
+import model.YogaBuildingRoom;
+
+import org.hibernate.Hibernate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import service.AccomodationService;
+import dao.AccomodationDao;
+
+
+@Service
+public class AccomodationServiceImpl implements AccomodationService {
+	
+	@Autowired
+	private AccomodationDao accomodationDao;
+
+	@Override
+	public void saveOrUpdate(CommonBean commonBean) {
+		 accomodationDao.saveOrUpdate(commonBean);
+	}
+
+	@Override
+	public List<YogaBuildingRoom> getAvailableRoom(CommonBean searchCriteria) {
+		List<YogaBuildingRoom> rooms = accomodationDao.getAvailableRoom(searchCriteria);
+		for (YogaBuildingRoom yogaBuildingRoom : rooms) {
+			Hibernate.initialize(yogaBuildingRoom.getYogaProperty());
+			Hibernate.initialize(yogaBuildingRoom.getYogaBuilding());
+			Hibernate.initialize(yogaBuildingRoom.getYogaRoom());
+			Hibernate.initialize(yogaBuildingRoom.getExpectedArrivals());
+		}
+		
+		return rooms;
+	}
+
+	@Override
+	public List<ExpectedArrivals> getArrivalsList() {
+		List<ExpectedArrivals> arrivals = accomodationDao.getArrivalsList();
+		for (ExpectedArrivals expectedArrivals : arrivals) {
+			Hibernate.initialize(expectedArrivals.getArrivalsContact());
+			Hibernate.initialize(expectedArrivals.getArrivalsAddresses());
+			Hibernate.initialize(expectedArrivals.getArrivalsGroup()); 
+			
+		}
+		return arrivals;
+	}
+
+	@Override
+	public List<YogaBuildingRoom> getAvailableRoom() {
+		List<YogaBuildingRoom> rooms = accomodationDao.getAvailableRoom();
+		for (YogaBuildingRoom yogaBuildingRoom : rooms) {
+			Hibernate.initialize(yogaBuildingRoom.getYogaProperty());
+			Hibernate.initialize(yogaBuildingRoom.getYogaBuilding());
+			Hibernate.initialize(yogaBuildingRoom.getYogaRoom());
+			Hibernate.initialize(yogaBuildingRoom.getExpectedArrivals());
+			Hibernate.initialize(yogaBuildingRoom.getYogaBed());
+		}
+		
+		return rooms;
+	}
+
+	@Override
+	public void updateBuildingRooms(Long arrId, Long buildingRoomId) {
+		accomodationDao.updateBuildingRooms(arrId, buildingRoomId);
+		
+	}
+
+	@Override
+	public List<YogaBuildingRoom> getRegisterdList(String name,Date dateOfArrivals) {
+		List<YogaBuildingRoom> rooms = accomodationDao.getRegisterdList(name,dateOfArrivals);
+		for (YogaBuildingRoom yogaBuildingRoom : rooms) {
+			Hibernate.initialize(yogaBuildingRoom.getYogaProperty());
+			Hibernate.initialize(yogaBuildingRoom.getYogaBuilding());
+			Hibernate.initialize(yogaBuildingRoom.getYogaRoom());
+			Hibernate.initialize(yogaBuildingRoom.getExpectedArrivals());
+		}
+		
+		return rooms;
+	
+	}
+	
+	@Override
+	public void roomConfirmed(Long[] id){
+		for (Long long1 : id) {
+			accomodationDao.roomConfirm(long1);
+		}
+	}
+	@Override
+	public YogaBuildingRoom getArrivalsDetails(Long id){
+		YogaBuildingRoom buildingRoom = accomodationDao.getArrivalsDetails(id);
+		Hibernate.initialize(buildingRoom.getExpectedArrivals());
+		Hibernate.initialize(buildingRoom.getYogaRoom());
+		Hibernate.initialize(buildingRoom.getYogaBuilding());
+		Hibernate.initialize(buildingRoom.getYogaBed());
+		return buildingRoom;
+	}
+	@Override
+	public void roomVacant(Long[] id){
+		for (Long long1 : id) {
+			accomodationDao.roomVacant(long1);
+		}
+		
+	}
+	
+	
+}

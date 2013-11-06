@@ -1,0 +1,106 @@
+package controllers;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import model.CommonBean;
+import model.YogaBuildingRoom;
+import model.Login;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import service.AccomodationService;
+import service.LoginService;
+
+
+@Controller
+@Transactional
+public class HomeController extends ManagementControllerSupport {
+	@Autowired
+	private LoginService loginService;
+	@Autowired
+	private AccomodationService accomodationService;
+
+
+	
+	@RequestMapping("/home.htm")
+	public String home(HttpServletRequest request, @ModelAttribute("commonBean") CommonBean commonBean,
+			Map<String, Object> model) throws Exception {
+		setCommonSearchBean(model);
+			
+		HttpSession session = request.getSession();
+		String loginUser = (String) session.getAttribute("user");
+		YogaLogin yogaLogin = loginService.getLoggedInUser(loginUser);
+		model.put("loginUser", loginUser);
+		model.put("employee", yogaLogin);
+		return "home";
+	}
+	@RequestMapping("/homeList.htm")
+	public String homeList(HttpSession session, @ModelAttribute("commonBean") CommonBean commonBean,
+			Map<String, Object> model) throws Exception {
+        loadCommonData(session, model);
+		List<YogaBuildingRoom> availableRoomList = accomodationService.getRegisterdList(commonBean.getArrName(),commonBean.getDateOfArrivals());
+		model.put("rigistedUser", availableRoomList);
+		return "home";
+	}
+	@RequestMapping(value = "/homeList.htm", params = "confirmation", method = RequestMethod.POST)
+	public String roomConfirmation(HttpSession session, @ModelAttribute("commonBean") CommonBean commonBean,
+			Map<String, Object> model)throws Exception {
+		loadCommonData(session, model);
+		Long[] confirmationId = commonBean.getCheckbox();
+		accomodationService.roomConfirmed(confirmationId);
+		return "redirect:homeList.htm";
+		
+	}
+	@RequestMapping(value = "/homeList.htm", params = "vacant", method = RequestMethod.POST)
+	public String roomVacant(HttpSession session, @ModelAttribute("commonBean") CommonBean commonBean,
+			Map<String, Object> model)throws Exception {
+		loadCommonData(session, model);
+		Long[] confirmationId = commonBean.getCheckbox();
+		accomodationService.roomVacant(confirmationId);
+		return "redirect:homeList.htm";
+		
+	}
+	@RequestMapping("/arrivalsEdit.htm")
+	public String arrivalsDetails(HttpSession session,@RequestParam("buildingRoomId") Long buildingRoomId,@ModelAttribute("commonBean") CommonBean commonBean,Map<String, Object> model){
+		loadCurrentUser(session, model);
+		YogaBuildingRoom buildingRoom = accomodationService.getArrivalsDetails(buildingRoomId);
+		CommonBean commonBean2 = createDetails(buildingRoom);
+		model.put("commonBean", commonBean2);
+		
+		return "homeArrivalsDetails";
+		
+	}
+	private CommonBean createDetails(YogaBuildingRoom buildingRoom) {
+		CommonBean commonBean2 = new CommonBean();
+		commonBean2.setArrName(buildingRoom.getExpectedArrivals().getArrName());
+		commonBean2.setHeadName(buildingRoom.getExpectedArrivals().getArrivalsGroup().getHeadName());
+		commonBean2.setDateOfArrivals(buildingRoom.getExpectedArrivals().getDateOfArrivals());
+		commonBean2.setDateOfDeparture(buildingRoom.getExpectedArrivals().getDateOfDeparture());
+		commonBean2.setBuildingName(buildingRoom.getYogaBuilding().getBuildingName());
+		commonBean2.setRoomNumber(buildingRoom.getYogaRoom().getRoomNumber());
+		commonBean2.setBedName(buildingRoom.getYogaBed().getBedName());
+		return commonBean2;
+	}
+	@InitBinder
+    public void bindConverters(WebDataBinder binder) {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        format.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(format, true));
+    }
+
+	}

@@ -1,0 +1,1 @@
+<input type="text" value="${trainingDet.fromDate}" readonly="readonly" style="width:150px;" />

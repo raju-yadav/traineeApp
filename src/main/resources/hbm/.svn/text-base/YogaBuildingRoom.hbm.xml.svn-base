@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 21, 2010 4:09:50 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="model.YogaBuildingRoom" table="YOGA_BUILDING_ROOM" >
+        <id name="buildingRoomId" type="long">
+            <column name="BUILDING_ROOM_ID" precision="11" scale="0" />
+            <generator class="increment" />
+        </id>
+       <property name="confirmation" column="confirmation_status" type="string" length="5"></property>
+        <property name="vacantStatus" column="vacant_status" type="string" length="5"></property>
+        <many-to-one name="expectedArrivals" class="model.ExpectedArrivals" fetch="select">
+            <column name="ARRIVAL_ID" scale="0" />
+        </many-to-one>
+        <many-to-one name="yogaProperty" class="model.YogaProperty" fetch="select">
+            <column name="PROPERTY_ID" precision="11" scale="0" />
+        </many-to-one>
+        <many-to-one name="yogaBuilding" class="model.YogaBuilding" fetch="select">
+            <column name="BUILDING_ID" precision="11" scale="0" />
+        </many-to-one>
+        <many-to-one name="yogaRoom" class="model.YogaRoom" fetch="select">
+            <column name="ROOM_ID" precision="11" scale="0" default="0"/>
+        </many-to-one>
+         <many-to-one name="yogaBed" class="model.YogaBed" fetch="select">
+            <column name="BED_ID" precision="11" scale="0" default="0"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

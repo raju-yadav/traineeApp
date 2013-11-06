@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 7, 2010 6:52:14 PM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+	<class name="model.Login" table="LOGIN">
+		<id name="loginId" type="long">
+			<column name="LOGIN_ID" precision="11" scale="0" />
+			<generator class="increment">
+			</generator>
+		</id>
+		
+		<property name="userName" type="string" column="USER_NAME" not-null="true" length="100"></property>
+
+		
+		<property name="password" type="string">
+			<column name="PASSWORD" length="25" not-null="true" />
+		</property>
+		
+		
+	</class>
+	<query name="login.query.string">
+		from Login where USER_NAME = ? and PASSWORD = ?
+	</query>
+</hibernate-mapping>

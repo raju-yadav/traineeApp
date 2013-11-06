@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 7, 2010 6:52:14 PM by Hibernate Tools 3.2.4.GA -->
+	<hibernate-mapping>
+    <class name="model.FeedBackResults" table="FeedBackFormResults" >
+    <id name="feedback_id" type="long">
+    <column name="FeedBack_ID" precision="11" scale="0" />
+    <generator class="increment"/>
+    </id>
+    <property name="ratings" type="long">
+         <column name="Ratings" length="50" />
+    </property>
+     <many-to-one name="feedBackTemplate" class="model.FeedBackTemplate" fetch="select">
+            <column name="Template_id" not-null="true" />
+    </many-to-one>
+         
+         <many-to-one name="question_id" class="model.FeedBackQuestions" fetch="select">
+            <column name="Question_id" not-null="true" />
+         </many-to-one>
+            
+            <many-to-one name="training_id" class="model.Training" fetch="select">
+            	<column name="Training_id" not-null="true" /> 
+            </many-to-one>
+    </class>
+    </hibernate-mapping>
